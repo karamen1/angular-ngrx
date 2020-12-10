@@ -123,6 +123,7 @@
   },
   "defaultProject": "angular-ngrx-demo",
   "cli": {
-    "analytics": "fe1f111c-7e7c-4963-84b1-6d6cd43f143b"
+    "analytics": "fe1f111c-7e7c-4963-84b1-6d6cd43f143b",
+    "defaultCollection": "@ngrx/schematics"
   }
 }
