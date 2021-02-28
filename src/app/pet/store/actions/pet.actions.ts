@@ -12,7 +12,7 @@ enum PetActionTypes {
 export const loadPets = createAction(PetActionTypes.LOAD_PETS);
 export const loadPetsSuccess = createAction(
   PetActionTypes.LOAD_PETS_SUCCESS,
-  props<ReadonlyArray<Pet>>()
+  props<{ pets: Pet[] }>()
 );
 export const loadPetsFailure = createAction(PetActionTypes.LOAD_PETS_FAILURE);
 export const createPet = createAction(PetActionTypes.CREATE_PET, props<Pet>());

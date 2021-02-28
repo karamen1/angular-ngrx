@@ -1,30 +1,20 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Pet } from 'src/app/pet/model/pet';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PetService {
-  constructor() {}
-
-  pets = [
-    {
-      id: '1',
-      color: 'red',
-      name: 'DuNv2',
-      dateOfBirth: '1234'
-    },
-    {
-      id: '2',
-      color: 'green',
-      name: 'DuNv2',
-      dateOfBirth: '1234'
-    }
-  ];
+  constructor(private httpClient: HttpClient) {}
 
   public loadAllPets(): Observable<Array<Pet>> {
-    console.log();
-    return of(this.pets);
+    const bookListURL = 'assets/mock/pets.json';
+    return this.getJSON<Array<Pet>>(bookListURL);
+  }
+
+  private getJSON<T>(jsonFileUrl: string): Observable<T> {
+    return this.httpClient.get<T>(jsonFileUrl);
   }
 }

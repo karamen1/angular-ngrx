@@ -5,7 +5,7 @@ import { Pet } from '../../model/pet';
 export const petFeatureKey = 'pet';
 
 export interface PetState {
-  pets: ReadonlyArray<Pet>;
+  pets: Pet[];
 }
 
 export const initialState: PetState = {
@@ -15,7 +15,8 @@ export const initialState: PetState = {
 const petReducer = createReducer(
   initialState,
   on(PetAction.loadPetsSuccess, (state, payload) => ({
-    pets: payload
+    ...state,
+    pets: payload.pets
   })),
   on(PetAction.loadPetsFailure, (state) => ({ pets: [] }))
 );
