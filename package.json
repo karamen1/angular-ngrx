@@ -24,7 +24,7 @@
     "@ngrx/effects": "^10.1.0",
     "@ngrx/entity": "^10.1.0",
     "@ngrx/store": "^10.1.0",
-    "@ngrx/store-devtools": "^10.1.0",
+    "@ngrx/store-devtools": "^10.1.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
@@ -36,7 +36,7 @@
     "@angular-eslint/eslint-plugin-template": "0.8.0-beta.5",
     "@angular-eslint/schematics": "^0.8.0-beta.5",
     "@angular-eslint/template-parser": "0.8.0-beta.5",
-    "@angular/cli": "~10.1.7",
+    "@angular/cli": "^10.2.1",
     "@angular/compiler-cli": "~10.1.6",
     "@ngrx/schematics": "^10.1.0",
     "@types/jasmine": "~3.5.0",

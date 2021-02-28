@@ -15,6 +15,11 @@ import { ShareModule } from './shared';
 import { HomeModule } from './home';
 import { AuthModule } from './auth';
 import { PetModule } from './pet';
+import { StoreModule } from '@ngrx/store';
+import { HttpClientModule } from '@angular/common/http';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './store/effects/auth.effects';
+import { appStateReducer } from './store/app.state';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,18 +30,20 @@ import { PetModule } from './pet';
     PetModule,
     AppRoutingModule,
     ShareModule,
-    StoreDevtoolsModule.instrument({
-      maxAge: 25, // Retains last 25 states
-      logOnly: environment.production // Restrict extension to log-only mode
-    }),
-    !environment.production ? StoreDevtoolsModule.instrument() : [],
     BrowserAnimationsModule,
     MatGridListModule,
     MatMenuModule,
     MatIconModule,
     MatButtonModule,
     LayoutModule,
-    MatSidenavModule
+    MatSidenavModule,
+    HttpClientModule,
+    StoreModule.forRoot(appStateReducer),
+    EffectsModule.forRoot([AuthEffects]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production // Restrict extension to log-only mode
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
