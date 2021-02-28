@@ -1,18 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
-import { LoginComponent } from './session/view/login/login.component';
+import { Page404Component } from './shared';
 
-const routes: Routes = [
-  {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
-    path: 'home',
-    component: AppComponent
-  }
-];
+const routes: Routes = [{ path: '**', component: Page404Component }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
