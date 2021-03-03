@@ -1,14 +1,14 @@
 [
   {
     "id": "12345",
-    "name": "Danh Bai",
-    "color": "Van Du",
+    "name": "Dogs 1",
+    "color": "yellow",
     "dateOfBirth": "124"
   },
   {
-    "id": "12346",
-    "name": "Danh Bai",
-    "color": "Van Du",
+    "id": "67890",
+    "name": "Dogs 2",
+    "color": "Red",
     "dateOfBirth": "124"
   }
 ]

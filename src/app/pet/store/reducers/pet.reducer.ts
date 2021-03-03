@@ -2,7 +2,7 @@ import { Action, createReducer, on } from '@ngrx/store';
 import * as PetAction from '../actions';
 import { Pet } from '../../model/pet';
 
-export const petFeatureKey = 'pet';
+export const petFeatureKey = 'petState';
 
 export interface PetState {
   pets: Pet[];

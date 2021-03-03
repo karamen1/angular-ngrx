@@ -4,17 +4,16 @@ import { SessionInfoState } from '../app.state';
 
 // Initial state
 export const initialState: SessionInfoState = {
-  isAuthenticated: localStorage.getItem('token') !== null,
+  isAuthenticated: false,
   user: null
 };
 
 const authReducer = createReducer(
   initialState,
   // Login success
-  on(AuthAction.loginSuccess, (state, user) => ({
-    ...state,
+  on(AuthAction.loginSuccess, (state, payload) => ({
     isAuthenticated: true,
-    user: user
+    user: payload.user
   })),
 
   // Login Failure
