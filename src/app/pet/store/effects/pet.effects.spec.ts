@@ -10,10 +10,7 @@ describe('PetEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        PetEffects,
-        provideMockActions(() => actions$)
-      ]
+      providers: [PetEffects, provideMockActions(() => actions$)]
     });
 
     effects = TestBed.inject(PetEffects);
