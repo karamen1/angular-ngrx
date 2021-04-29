@@ -5,7 +5,7 @@ import { Page404Component } from './shared';
 const routes: Routes = [{ path: '**', component: Page404Component }];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
