@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './store/effects/auth.effects';
 import { appStateReducer } from './store/app.state';
+import { DragDropDemoModule } from './drag-drop-comp/drag-drop-demo.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,6 +29,7 @@ import { appStateReducer } from './store/app.state';
     HomeModule,
     AuthModule,
     PetModule,
+    DragDropDemoModule,
     AppRoutingModule,
     ShareModule,
     BrowserAnimationsModule,
