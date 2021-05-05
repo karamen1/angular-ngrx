@@ -1,3 +1,5 @@
-<button (click)="increase()">+</button>
-{{ value }}
-<button (click)="decrease()">-</button>
+<div class="wrapper" [ngClass]="{disabled: disable}" [style]="positionStyle">
+  <button (click)="increase()">+</button>
+  {{ value }}
+  <button (click)="decrease()">-</button>
+</div>

@@ -21,6 +21,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './store/effects/auth.effects';
 import { appStateReducer } from './store/app.state';
 import { DragDropDemoModule } from './drag-drop-comp/drag-drop-demo.module';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [AppComponent],
@@ -39,6 +40,7 @@ import { DragDropDemoModule } from './drag-drop-comp/drag-drop-demo.module';
     MatButtonModule,
     LayoutModule,
     MatSidenavModule,
+    MatListModule,
     HttpClientModule,
     StoreModule.forRoot(appStateReducer),
     EffectsModule.forRoot([AuthEffects]),

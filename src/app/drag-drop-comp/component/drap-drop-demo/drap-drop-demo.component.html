@@ -1,6 +1,23 @@
-<p>drap-drop-demo works!</p>
-
-<app-counter-input [(ngModel)]="countValue"></app-counter-input>
-<br >
-<br >
-{{countValue}}
+<div class="wrapper">
+  <p>Demo drag & drop dynamic component</p>
+  <div class="content">
+    <div class="sec1">
+      <p class="sec-header">List of components</p>
+      <mat-selection-list [(ngModel)]="selectedType" #shoes [multiple]="false">
+        <mat-list-option *ngFor="let shoe of componentTypes" [value]="shoe">
+          {{shoe}}
+        </mat-list-option>
+      </mat-selection-list>
+      <div>
+        <button mat-raised-button color="primary" (click)="addComponent()">Add</button>
+      </div>
+    </div>
+    <div class="sec2">
+      <p class="sec-header">Layout</p>
+      <ng-template dynamicContent></ng-template>
+    </div>
+    <div class="sec3">
+      <p class="sec-header">Properties</p>
+    </div>
+  </div>
+</div>
