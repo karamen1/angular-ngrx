@@ -1,4 +1,4 @@
-<div class="wrapper" [ngClass]="{disabled: disable}" [style]="positionStyle">
+<div cdkDrag class="wrapper" [ngClass]="{disabled: disable}" [style]="positionStyle">
   <button (click)="increase()">+</button>
   {{ value }}
   <button (click)="decrease()">-</button>

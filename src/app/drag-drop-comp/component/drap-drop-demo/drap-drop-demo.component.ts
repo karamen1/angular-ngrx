@@ -36,7 +36,7 @@ export class DrapDropDemoComponent implements OnInit {
       case 'Counter':
         compRef = this.generateAndAddComponent(CounterInputComponent);
         compRef as ComponentRef<CounterInputComponent>;
-        compRef.instance.disable = true;
+        compRef.instance.disable = false;
         compRef.instance.layout = {
           top: 10,
           left: 100
