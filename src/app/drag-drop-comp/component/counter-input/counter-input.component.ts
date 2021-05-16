@@ -1,6 +1,6 @@
-import { Component, forwardRef, Input } from '@angular/core';
+import { Component, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { ILayout } from './../../models/layout-control';
+import { LayoutCore } from '../../my-control-layout.base.component';
 
 @Component({
   selector: 'app-counter-input',
@@ -14,22 +14,13 @@ import { ILayout } from './../../models/layout-control';
     }
   ]
 })
-export class CounterInputComponent implements ControlValueAccessor {
-  positionStyle: unknown;
-  @Input() disable: boolean = false;
-  @Input('layout') set layout(pos: ILayout) {
-    if (pos) {
-      this.positionStyle = {
-        top: `${pos.top}px`,
-        left: `${pos.left}px`,
-        position: 'relative'
-      };
-    }
-  }
+export class CounterInputComponent
+  extends LayoutCore
+  implements ControlValueAccessor {
   onChange: Function = () => {};
   onTouch: Function = () => {};
 
-  value: number = 0;
+  value = 0;
 
   writeValue(value: any): void {
     this.value = value;

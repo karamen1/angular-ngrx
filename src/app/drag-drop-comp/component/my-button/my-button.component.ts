@@ -1,13 +1,21 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { LayoutCore } from '../../my-control-layout.base.component';
 
 @Component({
   selector: 'app-my-button',
-  template: `<button [ngClass]="{disabled: disable}">{{label}}</button>`
+  // eslint-disable-next-line quotes
+  template: `<button
+    cdkDrag
+    [ngClass]="{ disabled: !editable }"
+    [style]="positionStyle"
+  >
+    {{ label }}
+  </button>`
 })
-export class MyButtonComponent implements OnInit {
-  @Input() label: string = "My Button";
-  @Input() disable: boolean = false;
-  constructor() { }
-  ngOnInit(): void {
+export class MyButtonComponent extends LayoutCore implements OnInit {
+  @Input() label = 'My Button';
+  constructor() {
+    super();
   }
+  ngOnInit(): void {}
 }

@@ -9,13 +9,17 @@ import { DrapDropDemoComponent } from './component/drap-drop-demo/drap-drop-demo
 import { DynamicContent } from './component/dynamiccontent';
 import { MyButtonComponent } from './component/my-button/my-button.component';
 import { DragDropDemoRoutingModule } from './drag-drop-demo-routing.module';
+import { MyAreaComponent } from './component/my-area/my-area.component';
+import { MyLabelComponent } from './component/my-label/my-label.component';
 
 @NgModule({
   declarations: [
     CounterInputComponent,
     DynamicContent,
     DrapDropDemoComponent,
-    MyButtonComponent
+    MyButtonComponent,
+    MyAreaComponent,
+    MyLabelComponent
   ],
   imports: [
     CommonModule,

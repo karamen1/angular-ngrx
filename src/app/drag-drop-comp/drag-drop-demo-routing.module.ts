@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class DragDropDemoRoutingModule { }
+export class DragDropDemoRoutingModule {}

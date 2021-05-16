@@ -1,8 +1,17 @@
-import { Component, ComponentFactoryResolver, ComponentRef, OnInit, Type, ViewChild } from '@angular/core';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import {
+  Component,
+  ComponentFactoryResolver,
+  ComponentRef,
+  OnInit,
+  Type,
+  ViewChild
+} from '@angular/core';
 import { ILayout } from '../../models/layout-control';
 import { DynamicContent } from '../dynamiccontent';
 import { MyButtonComponent } from '../my-button/my-button.component';
 import { CounterInputComponent } from './../counter-input/counter-input.component';
+import { MyAreaComponent } from './../my-area/my-area.component';
 
 @Component({
   selector: 'app-drap-drop-demo',
@@ -10,19 +19,26 @@ import { CounterInputComponent } from './../counter-input/counter-input.componen
   styleUrls: ['./drap-drop-demo.component.css']
 })
 export class DrapDropDemoComponent implements OnInit {
-  componentTypes: string[] = ['Counter', 'Dropdown', 'Button', 'Label', 'ListBox'];
+  componentTypes: string[] = [
+    'Counter',
+    'Button',
+    'Label',
+    'Textarea',
+    'Dropdown'
+  ];
   selectedType: string;
 
   @ViewChild(DynamicContent) insertionPoint: DynamicContent;
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
+  constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   private generateAndAddComponent(componentType: Type<any>) {
-    let componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentType);
-    let viewContainerRef = this.insertionPoint.viewContainerRef;
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(
+      componentType
+    );
+    const viewContainerRef = this.insertionPoint.viewContainerRef;
     return viewContainerRef.createComponent(componentFactory);
   }
 
@@ -36,23 +52,27 @@ export class DrapDropDemoComponent implements OnInit {
       case 'Counter':
         compRef = this.generateAndAddComponent(CounterInputComponent);
         compRef as ComponentRef<CounterInputComponent>;
-        compRef.instance.disable = false;
         compRef.instance.layout = {
           top: 10,
           left: 100
         } as ILayout;
         break;
+      case 'Textarea':
+        compRef = this.generateAndAddComponent(MyAreaComponent);
+        compRef as ComponentRef<MyAreaComponent>;
+        break;
       case 'Button':
         compRef = this.generateAndAddComponent(MyButtonComponent);
         compRef as ComponentRef<MyButtonComponent>;
-        compRef.instance.disable = true;
+        compRef.instance.layout = {
+          top: 10,
+          left: 100
+        } as ILayout;
         break;
       default:
         break;
     }
-
-
-
   }
 
+  drop(event: CdkDragDrop<string[]>) {}
 }

@@ -4,17 +4,25 @@
     <div class="sec1">
       <p class="sec-header">List of components</p>
       <mat-selection-list [(ngModel)]="selectedType" #shoes [multiple]="false">
-        <mat-list-option *ngFor="let shoe of componentTypes" [value]="shoe">
-          {{shoe}}
+        <mat-list-option
+          cdkDrag
+          *ngFor="let shoe of componentTypes"
+          [value]="shoe"
+        >
+          {{ shoe }}
         </mat-list-option>
       </mat-selection-list>
       <div>
-        <button mat-raised-button color="primary" (click)="addComponent()">Add</button>
+        <button mat-raised-button color="primary" (click)="addComponent()">
+          Add
+        </button>
       </div>
     </div>
     <div class="sec2">
       <p class="sec-header">Layout</p>
-      <ng-template dynamicContent></ng-template>
+      <div class="grid">
+        <ng-template dynamicContent></ng-template>
+      </div>
     </div>
     <div class="sec3">
       <p class="sec-header">Properties</p>

@@ -31,3 +31,28 @@
   font-weight: bold;
   border-bottom: 0.2em tan solid;
 }
+
+.grid {
+  height: 90%;
+  width: 100%;
+  margin: 0;
+}
+.grid {
+  background-image: repeating-linear-gradient(#ccc 0 1px, transparent 1px 100%),
+    repeating-linear-gradient(90deg, #ccc 0 1px, transparent 1px 100%);
+  background-size: 10px 10px;
+}
+
+.example-box {
+  padding: 20px 10px;
+  border-bottom: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  background: white;
+  font-size: 14px;
+}
