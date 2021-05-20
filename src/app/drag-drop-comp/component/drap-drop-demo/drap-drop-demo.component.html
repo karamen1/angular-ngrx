@@ -1,21 +1,19 @@
 <div class="wrapper">
   <p>Demo drag & drop dynamic component</p>
-  <div class="content">
+  <div class="content" cdkDrop>
     <div class="sec1">
       <p class="sec-header">List of components</p>
-      <mat-selection-list [(ngModel)]="selectedType" #shoes [multiple]="false">
-        <mat-list-option
-          cdkDrag
-          *ngFor="let shoe of componentTypes"
-          [value]="shoe"
-        >
-          {{ shoe }}
-        </mat-list-option>
-      </mat-selection-list>
+      <div
+        cdkDropList
+        [cdkDropListData]="componentTypes"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div class="example-box" *ngFor="let item of componentTypes" cdkDrag>
+          {{ item }}
+        </div>
+      </div>
       <div>
-        <button mat-raised-button color="primary" (click)="addComponent()">
-          Add
-        </button>
+        <button mat-raised-button color="primary">Add</button>
       </div>
     </div>
     <div class="sec2">
