@@ -36,6 +36,7 @@
   height: 90%;
   width: 100%;
   margin: 0;
+  position: relative;
 }
 .grid {
   background-image: repeating-linear-gradient(#ccc 0 1px, transparent 1px 100%),
@@ -43,8 +44,16 @@
   background-size: 10px 10px;
 }
 
+.example-list {
+  border: solid 1px #ccc;
+  min-height: 60px;
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+  display: block;
+}
+
 .example-box {
-  padding: 20px 10px;
   border-bottom: solid 1px #ccc;
   color: rgba(0, 0, 0, 0.87);
   display: flex;

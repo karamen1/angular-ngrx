@@ -5,3 +5,8 @@ export interface ILayout {
   width?: number;
   background?: string;
 }
+
+export interface IDragData {
+  type: 'control' | 'param';
+  valueName: string;
+}

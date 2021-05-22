@@ -4,12 +4,14 @@ import {
   ComponentRef,
   OnInit,
   Type,
-  ViewChild
+  ViewChild,
+  ViewRef
 } from '@angular/core';
 import { ILayout } from '../../models/layout-control';
 import { LayoutCore } from '../../my-control-layout.base.component';
 import { DynamicContent } from '../dynamiccontent';
 import { MyButtonComponent } from '../my-button/my-button.component';
+import { IDragData } from './../../models/layout-control';
 import { CounterInputComponent } from './../counter-input/counter-input.component';
 import { MyAreaComponent } from './../my-area/my-area.component';
 
@@ -26,6 +28,9 @@ export class DrapDropDemoComponent implements OnInit {
     'Textarea',
     'Dropdown'
   ];
+
+  paramTypes: string[] = ['Param1', 'Param2', 'Param3', 'Param4', 'Param5'];
+
   selectedType: string;
 
   @ViewChild(DynamicContent) insertionPoint: DynamicContent;
@@ -43,7 +48,6 @@ export class DrapDropDemoComponent implements OnInit {
   }
 
   addComponent(componentType: string, top = 0, left = 0) {
-    console.log('Start addComponent', top, left);
     if (!componentType) {
       return;
     }
@@ -79,14 +83,53 @@ export class DrapDropDemoComponent implements OnInit {
     }
   }
 
-  drop(event: any) {
-    console.log(event);
-    const componentType = event.container.data[event.currentIndex];
-    const { x, y } = event.distance;
-    this.addComponent(componentType);
+  allowDrop(event: any) {
+    event.preventDefault();
   }
 
-  drag(event: any) {
-    console.log(event);
+  drop(event: DragEvent) {
+    console.log(event.offsetX, event.offsetY);
+    const dragData: IDragData = JSON.parse(
+      event.dataTransfer?.getData('data') || ''
+    ) as IDragData;
+    console.log(dragData);
+
+    if (dragData.type === 'control') {
+      this.addComponent(dragData.valueName, event.offsetY, event.offsetX);
+    }
   }
+
+  dragstartControl(event: any, value: string) {
+    event.dataTransfer.setData(
+      'data',
+      JSON.stringify({
+        type: 'control',
+        valueName: value
+      } as IDragData)
+    );
+  }
+
+  dragstartParam(event: any, value: string) {
+    event.dataTransfer.setData(
+      'data',
+      JSON.stringify({
+        type: 'param',
+        valueName: value
+      } as IDragData)
+    );
+  }
+
+  exportLayout() {
+    this.insertionPoint.viewContainerRef.remove(0);
+    const numberOfElement = this.insertionPoint.viewContainerRef.length;
+    for (let index = 0; index < numberOfElement; index++) {
+      const element: ViewRef = this.insertionPoint.viewContainerRef.get(
+        index
+      ) as ViewRef;
+      console.log(element);
+      this.insertionPoint.viewContainerRef.remove(0);
+    }
+  }
+
+  delete() {}
 }

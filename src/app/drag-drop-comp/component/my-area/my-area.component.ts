@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { LayoutCore } from '../../my-control-layout.base.component';
 
 @Component({
@@ -12,4 +12,17 @@ export class MyAreaComponent extends LayoutCore implements OnInit {
     super();
   }
   ngOnInit(): void {}
+
+  allowDrop(event: any) {
+    event.preventDefault();
+  }
+
+  drop(event: DragEvent) {
+    console.log(event);
+  }
+
+  @HostListener('click', ['$event.target'])
+  onClick() {
+    console.log('selected');
+  }
 }

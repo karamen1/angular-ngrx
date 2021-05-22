@@ -3,23 +3,44 @@
   <div class="content" cdkDrop>
     <div class="sec1">
       <p class="sec-header">List of components</p>
-      <div
-        cdkDropList
-        [cdkDropListData]="componentTypes"
-        (cdkDropListDropped)="drop($event)"
-      >
-        <div class="example-box" *ngFor="let item of componentTypes" cdkDrag>
-          {{ item }}
+      <div class="example-list">
+        <div
+          class="example-box"
+          *ngFor="let ctype of componentTypes"
+          draggable="true"
+          (dragstart)="dragstartControl($event, ctype)"
+        >
+          {{ ctype }}
         </div>
       </div>
+      <hr />
+      <div class="example-list">
+        <div
+          class="example-box"
+          *ngFor="let param of paramTypes"
+          draggable="true"
+          (dragstart)="dragstartParam($event, param)"
+        >
+          {{ param }}
+        </div>
+      </div>
+
       <div>
         <button mat-raised-button color="primary">Add</button>
       </div>
     </div>
     <div class="sec2">
       <p class="sec-header">Layout</p>
-      <div class="grid">
+      <div class="grid" (drop)="drop($event)" (dragover)="allowDrop($event)">
         <ng-template dynamicContent></ng-template>
+      </div>
+      <div style="float: right">
+        <button mat-raised-button color="primary" (click)="delete()">
+          Delete
+        </button>
+        <button mat-raised-button color="primary" (click)="exportLayout()">
+          Export Layout
+        </button>
       </div>
     </div>
     <div class="sec3">

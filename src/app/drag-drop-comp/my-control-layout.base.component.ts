@@ -10,7 +10,7 @@ export abstract class LayoutCore implements OnInit, OnDestroy {
         left: `${pos.left}px`,
         width: pos.width ? `${pos.width}px` : 'fit-content',
         height: `${pos.height}px`,
-        position: 'relative'
+        position: 'absolute'
       };
     }
   }
