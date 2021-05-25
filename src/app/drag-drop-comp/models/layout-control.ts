@@ -7,6 +7,6 @@ export interface ILayout {
 }
 
 export interface IDragData {
-  type: 'control' | 'param';
-  valueName: string;
+  type?: 'control' | 'param';
+  valueName?: string;
 }

@@ -14,8 +14,18 @@ export abstract class LayoutCore implements OnInit, OnDestroy {
       };
     }
   }
+
+  public getLayout() {
+    return this.positionStyle || {};
+  }
+  public getParam() {
+    return this.paramRef;
+  }
+
+  paramRef: string;
+
   @Input() editable = false;
-  positionStyle: unknown;
+  positionStyle: any;
   constructor() {}
 
   ngOnInit(): void {}

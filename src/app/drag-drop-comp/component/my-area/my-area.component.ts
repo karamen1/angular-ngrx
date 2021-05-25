@@ -1,4 +1,11 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  OnInit,
+  Output
+} from '@angular/core';
+import { IDragData } from '../../models/layout-control';
 import { LayoutCore } from '../../my-control-layout.base.component';
 
 @Component({
@@ -7,6 +14,7 @@ import { LayoutCore } from '../../my-control-layout.base.component';
   styleUrls: ['./my-area.component.css']
 })
 export class MyAreaComponent extends LayoutCore implements OnInit {
+  @Output() onClick = new EventEmitter<string>();
   value: string;
   constructor() {
     super();
@@ -18,11 +26,20 @@ export class MyAreaComponent extends LayoutCore implements OnInit {
   }
 
   drop(event: DragEvent) {
-    console.log(event);
+    console.log('Text area drop', event.dataTransfer?.getData('data'));
+    const dragData: IDragData = JSON.parse(
+      event.dataTransfer?.getData('data') || ''
+    ) as IDragData;
+
+    if (dragData.type == 'param') {
+      this.paramRef = dragData.valueName || '';
+      console.log(this.paramRef);
+    }
   }
 
   @HostListener('click', ['$event.target'])
-  onClick() {
+  handleOnClick() {
     console.log('selected');
+    this.onClick.emit('Text Area click');
   }
 }

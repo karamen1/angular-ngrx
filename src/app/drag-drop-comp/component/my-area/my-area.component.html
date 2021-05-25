@@ -1,13 +1,12 @@
-<textarea
-  mwlResizable
-  [enableGhostResize]="true"
-  [resizeEdges]="{ bottom: true }"
-  class="resize-handle-bottom"
-  cdkDrag
-  matInput
-  [(ngModel)]="value"
+<div
   [ngClass]="{ disabled: !editable }"
   [style]="positionStyle"
   (drop)="drop($event)"
   (dragover)="allowDrop($event)"
-></textarea>
+  mwlResizable
+  [enableGhostResize]="true"
+  [resizeEdges]="{ bottom: true }"
+  class="resize-handle-bottom"
+>
+  <textarea matInput [(ngModel)]="value"></textarea>
+</div>

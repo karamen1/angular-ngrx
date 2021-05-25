@@ -22,5 +22,6 @@ body {
 
 .disabled {
   opacity: 0.8;
-  background: rgb(243, 220, 220);
+  background: rgb(70, 68, 68);
+  /* pointer-events: none; */
 }

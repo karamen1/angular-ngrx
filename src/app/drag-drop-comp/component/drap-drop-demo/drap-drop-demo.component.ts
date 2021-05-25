@@ -4,8 +4,7 @@ import {
   ComponentRef,
   OnInit,
   Type,
-  ViewChild,
-  ViewRef
+  ViewChild
 } from '@angular/core';
 import { ILayout } from '../../models/layout-control';
 import { LayoutCore } from '../../my-control-layout.base.component';
@@ -31,6 +30,8 @@ export class DrapDropDemoComponent implements OnInit {
 
   paramTypes: string[] = ['Param1', 'Param2', 'Param3', 'Param4', 'Param5'];
 
+  insertedComp: { [key: string]: unknown } = {};
+
   selectedType: string;
 
   @ViewChild(DynamicContent) insertionPoint: DynamicContent;
@@ -51,7 +52,7 @@ export class DrapDropDemoComponent implements OnInit {
     if (!componentType) {
       return;
     }
-    let compRef: ComponentRef<LayoutCore>;
+    let compRef: any;
 
     switch (componentType) {
       case 'Counter':
@@ -64,11 +65,15 @@ export class DrapDropDemoComponent implements OnInit {
         break;
       case 'Textarea':
         compRef = this.generateAndAddComponent(MyAreaComponent);
-        compRef as ComponentRef<MyAreaComponent>;
-        compRef.instance.layout = {
+        // eslint-disable-next-line no-case-declarations
+        const txtAreaCompRef = compRef as ComponentRef<MyAreaComponent>;
+        txtAreaCompRef.instance.layout = {
           top: top,
           left: left
         } as ILayout;
+        txtAreaCompRef.instance.onClick.subscribe((e) => {
+          console.log(e);
+        });
         break;
       case 'Button':
         compRef = this.generateAndAddComponent(MyButtonComponent);
@@ -81,6 +86,8 @@ export class DrapDropDemoComponent implements OnInit {
       default:
         break;
     }
+
+    this.insertedComp[Date.now()] = compRef;
   }
 
   allowDrop(event: any) {
@@ -92,10 +99,9 @@ export class DrapDropDemoComponent implements OnInit {
     const dragData: IDragData = JSON.parse(
       event.dataTransfer?.getData('data') || ''
     ) as IDragData;
-    console.log(dragData);
 
     if (dragData.type === 'control') {
-      this.addComponent(dragData.valueName, event.offsetY, event.offsetX);
+      this.addComponent(dragData.valueName!, event.offsetY, event.offsetX);
     }
   }
 
@@ -120,14 +126,11 @@ export class DrapDropDemoComponent implements OnInit {
   }
 
   exportLayout() {
-    this.insertionPoint.viewContainerRef.remove(0);
-    const numberOfElement = this.insertionPoint.viewContainerRef.length;
-    for (let index = 0; index < numberOfElement; index++) {
-      const element: ViewRef = this.insertionPoint.viewContainerRef.get(
-        index
-      ) as ViewRef;
-      console.log(element);
-      this.insertionPoint.viewContainerRef.remove(0);
+    console.log(this.insertedComp);
+    for (const key in this.insertedComp) {
+      const comp = this.insertedComp[key] as ComponentRef<LayoutCore>;
+      console.log('Layout', JSON.stringify(comp.instance.getLayout()));
+      console.log('Param', JSON.stringify(comp.instance.getParam()));
     }
   }
 
