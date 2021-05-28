@@ -4,13 +4,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatListModule } from '@angular/material/list';
 import { BrowserModule } from '@angular/platform-browser';
-import { ResizableModule } from 'angular-resizable-element';
 import { CounterInputComponent } from './component/counter-input/counter-input.component';
 import { DrapDropDemoComponent } from './component/drap-drop-demo/drap-drop-demo.component';
 import { DynamicContent } from './component/dynamiccontent';
 import { MyAreaComponent } from './component/my-area/my-area.component';
 import { MyButtonComponent } from './component/my-button/my-button.component';
 import { MyLabelComponent } from './component/my-label/my-label.component';
+import { ResizableDraggableDirective } from './directive/resizable-draggable.directive';
 import { DragDropDemoRoutingModule } from './drag-drop-demo-routing.module';
 
 @NgModule({
@@ -20,7 +20,8 @@ import { DragDropDemoRoutingModule } from './drag-drop-demo-routing.module';
     DrapDropDemoComponent,
     MyButtonComponent,
     MyAreaComponent,
-    MyLabelComponent
+    MyLabelComponent,
+    ResizableDraggableDirective
   ],
   imports: [
     CommonModule,
@@ -28,8 +29,7 @@ import { DragDropDemoRoutingModule } from './drag-drop-demo-routing.module';
     FormsModule,
     MatListModule,
     DragDropModule,
-    DragDropDemoRoutingModule,
-    ResizableModule
+    DragDropDemoRoutingModule
   ]
 })
 export class DragDropDemoModule {}

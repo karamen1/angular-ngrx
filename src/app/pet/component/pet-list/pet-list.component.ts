@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Store, select } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Pet } from '../../model/pet';
+import * as PetAction from '../../store/actions';
 import { PetState } from '../../store/reducers/pet.reducer';
 import { petListSelector } from '../../store/selector/pet.selector';
-import * as PetAction from '../../store/actions';
 
 @Component({
   selector: 'app-pet-list',
@@ -13,6 +13,7 @@ import * as PetAction from '../../store/actions';
 })
 export class PetListComponent implements OnInit {
   petList$: Observable<ReadonlyArray<Pet>>;
+  showAddPet = false;
   constructor(private store: Store<PetState>) {}
 
   displayedColumns: string[] = ['id', 'name', 'color'];
@@ -22,5 +23,9 @@ export class PetListComponent implements OnInit {
     this.store.dispatch(PetAction.loadPets());
 
     this.petList$.subscribe((e) => console.log(e));
+  }
+
+  addPet() {
+    this.showAddPet = !this.showAddPet;
   }
 }

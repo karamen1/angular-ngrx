@@ -1,12 +1,9 @@
 <div
+  appResizableDraggable
   [ngClass]="{ disabled: !editable }"
   [style]="positionStyle"
   (drop)="drop($event)"
   (dragover)="allowDrop($event)"
-  mwlResizable
-  [enableGhostResize]="true"
-  [resizeEdges]="{ bottom: true }"
-  class="resize-handle-bottom"
 >
   <textarea matInput [(ngModel)]="value"></textarea>
 </div>
