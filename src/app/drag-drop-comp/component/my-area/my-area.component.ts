@@ -5,8 +5,8 @@ import {
   OnInit,
   Output
 } from '@angular/core';
-import { IDragData } from '../../models/layout-control';
 import { LayoutCore } from '../../my-control-layout.base.component';
+import { IDragData } from './../../models/layout-control';
 
 @Component({
   selector: 'app-my-area',
@@ -26,11 +26,12 @@ export class MyAreaComponent extends LayoutCore implements OnInit {
   }
 
   drop(event: DragEvent) {
-    console.log('Text area drop', event.dataTransfer?.getData('data'));
+    if (!event.dataTransfer?.getData('data')) {
+      return;
+    }
     const dragData: IDragData = JSON.parse(
       event.dataTransfer?.getData('data') || ''
     ) as IDragData;
-
     if (dragData.type == 'param') {
       this.paramRef = dragData.valueName || '';
       console.log(this.paramRef);
@@ -39,7 +40,7 @@ export class MyAreaComponent extends LayoutCore implements OnInit {
 
   @HostListener('click', ['$event.target'])
   handleOnClick() {
-    console.log('selected');
-    this.onClick.emit('Text Area click');
+    // console.log('selected');
+    // this.onClick.emit('Text Area click');
   }
 }

@@ -1,9 +1,9 @@
 <div
-  appResizableDraggable
   [ngClass]="{ disabled: !editable }"
   [style]="positionStyle"
   (drop)="drop($event)"
   (dragover)="allowDrop($event)"
+  appResizableDraggable
 >
-  <textarea matInput [(ngModel)]="value"></textarea>
+  <textarea matInput [(ngModel)]="value" disabled class="text-area"></textarea>
 </div>

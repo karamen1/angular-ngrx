@@ -1,8 +1,4 @@
-.resize-handle-bottom {
-  position: absolute;
-  height: 5px;
-  cursor: row-resize;
-  width: 100%;
-}
-.resize-handle-bottom {
+.text-area {
+  width: 96%;
+  height: 100%;
 }

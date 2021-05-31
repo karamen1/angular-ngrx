@@ -95,7 +95,9 @@ export class DrapDropDemoComponent implements OnInit {
   }
 
   drop(event: DragEvent) {
-    console.log(event.offsetX, event.offsetY);
+    if (!event.dataTransfer?.getData('data')) {
+      return;
+    }
     const dragData: IDragData = JSON.parse(
       event.dataTransfer?.getData('data') || ''
     ) as IDragData;

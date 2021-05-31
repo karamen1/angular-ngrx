@@ -2,6 +2,7 @@
   class="wrapper"
   [ngClass]="{ disabled: !editable }"
   [style]="positionStyle"
+  appResizableDraggable
 >
   <button (click)="increase()">+</button>
   {{ value }}
