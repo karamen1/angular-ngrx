@@ -43,4 +43,9 @@ export class MyAreaComponent extends LayoutCore implements OnInit {
     // console.log('selected');
     // this.onClick.emit('Text Area click');
   }
+
+  handleResizedOrDragEnd($event: any) {
+    console.log($event);
+    // update top. left, with, heigt
+  }
 }

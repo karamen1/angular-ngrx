@@ -1,9 +1,18 @@
-import { Directive, ElementRef, Renderer2 } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  EventEmitter,
+  Output,
+  Renderer2
+} from '@angular/core';
+import { ILayout } from './../models/layout-control';
 
 @Directive({
   selector: '[appResizableDraggable]'
 })
 export class ResizableDraggableDirective {
+  @Output()
+  onResizedOrDragEnd: EventEmitter<ILayout> = new EventEmitter<ILayout>();
   mode = 0; // 0 resize
 
   private resizeStartMouseClick: {
@@ -32,6 +41,7 @@ export class ResizableDraggableDirective {
   }
 
   private createDivWrapper() {
+    // Div for Drag
     this.renderer.setAttribute(this.el.nativeElement, 'draggable', 'true');
     this.renderer.setStyle(this.el.nativeElement, 'cursor', 'move');
     this.renderer.listen(this.el.nativeElement, 'dragend', (e) =>
@@ -124,6 +134,11 @@ export class ResizableDraggableDirective {
 
     this.renderer.setStyle(this.el.nativeElement, 'width', newWidth + 'px');
     this.renderer.setStyle(this.el.nativeElement, 'height', newHeight + 'px');
+
+    this.onResizedOrDragEnd.emit({
+      top: this.resizeStartMouseClick.top,
+      left: this.resizeStartMouseClick.left
+    } as ILayout);
   }
 
   private dragStartElement($event: DragEvent) {

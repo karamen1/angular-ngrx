@@ -4,6 +4,7 @@
   (drop)="drop($event)"
   (dragover)="allowDrop($event)"
   appResizableDraggable
+  (onResizedOrDragEnd)="handleResizedOrDragEnd($event)"
 >
   <textarea matInput [(ngModel)]="value" disabled class="text-area"></textarea>
 </div>
